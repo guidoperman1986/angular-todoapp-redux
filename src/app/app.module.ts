@@ -1,10 +1,15 @@
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+
+import { StoreModule } from "@ngrx/store";
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TodosModule } from './todos/todos.module';
+import { appReducers } from './app.reducer';
 import { FooterComponent } from './footer/footer.component';
+import { TodosModule } from './todos/todos.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +19,13 @@ import { FooterComponent } from './footer/footer.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    TodosModule
+    TodosModule,
+    StoreModule.forRoot(appReducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: true
+    }),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
