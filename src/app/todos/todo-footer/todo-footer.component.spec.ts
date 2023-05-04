@@ -1,14 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TodoFooterComponent } from './todo-footer.component';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import { initialState } from '../todos.reducer';
 
 describe('TodoFooterComponent', () => {
   let component: TodoFooterComponent;
   let fixture: ComponentFixture<TodoFooterComponent>;
+  let store: MockStore;
+  const initialState = {}
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TodoFooterComponent ]
+      declarations: [ TodoFooterComponent ],
+      providers: [
+        provideMockStore({initialState})
+      ]
     })
     .compileComponents();
 
