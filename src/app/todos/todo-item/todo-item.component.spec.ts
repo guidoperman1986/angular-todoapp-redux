@@ -5,7 +5,6 @@ import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { appReducers } from 'src/app/app.reducer';
 import { deleteTodo, edit } from '../todos.action';
 import { TodoItemComponent } from './todo-item.component';
-/* import { initialState } from '../todos.reducer'; */
 import { FormControl } from '@angular/forms';
 
 describe('TodoItemComponent', () => {
@@ -61,7 +60,6 @@ describe('TodoItemComponent', () => {
     expect(spy).not.toHaveBeenCalled()
   }))
 
-  //create a test
   it('should finish todo edition', fakeAsync(() => {
     component.txtInput = new FormControl('un test')
     tick();

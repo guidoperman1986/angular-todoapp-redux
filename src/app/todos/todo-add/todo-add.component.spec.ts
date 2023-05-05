@@ -1,15 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { crear } from '../todos.action';
 import { TodoAddComponent } from './todo-add.component';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
-import { initialState } from '../todos.reducer';
-import { ReactiveFormsModule } from '@angular/forms';
 
 describe('TodoAddComponent', () => {
   let component: TodoAddComponent;
   let fixture: ComponentFixture<TodoAddComponent>;
   let store: MockStore;
-  const initialState = {}
+  const initialState = [{id: 0, texto: 'Roberto', completado: false}]
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -32,5 +32,26 @@ describe('TodoAddComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  //generate test for todo add
+  it('should add a todo', fakeAsync (() => {
+    const spy = spyOn(store, 'dispatch');
+    component.txtInput = new FormControl('Robert')
+    component.addTodo()    
+
+    tick();
+
+    expect(spy).toHaveBeenCalled()
+    // expect(spy).toHaveBeenCalledWith(crear({texto: component.txtInput.value}))
+
+  }));
+
+  it('should not dispatch when an error comes up', ()=>{
+    const spy = spyOn(store, 'dispatch');
+
+    component.txtInput.setErrors({required: true});
+
+    expect(spy).not.toHaveBeenCalled()
+  })
   
 });
