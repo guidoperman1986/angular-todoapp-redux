@@ -3,10 +3,11 @@ import { crear, toggle, edit, deleteTodo, toggleAll, deleteAll } from './todos.a
 import { Todo } from './models/todo.model';
 
 export const initialState: Todo[] = [
-  new Todo('bla bla'),
-  new Todo('bla bla 2'),
-  new Todo('bla bla 3'),
-  new Todo('bla bla 4'),
+  new Todo('Learn Angular'),
+  new Todo('Learn Typescript'),
+  new Todo('Learn Redux'),
+  new Todo('Learn CSS'),
+  new Todo('Repeat'),
 ];
 
 const _todoReducer = createReducer(
