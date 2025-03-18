@@ -5,9 +5,10 @@ import { AppState } from 'src/app/app.reducer';
 import * as actions from '../todos.action'
 
 @Component({
-  selector: 'app-todo-add',
-  templateUrl: './todo-add.component.html',
-  styleUrls: ['./todo-add.component.css']
+    selector: 'app-todo-add',
+    templateUrl: './todo-add.component.html',
+    styleUrls: ['./todo-add.component.css'],
+    standalone: false
 })
 export class TodoAddComponent {
   txtInput!: FormControl;

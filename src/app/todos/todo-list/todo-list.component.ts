@@ -5,9 +5,10 @@ import { AppState } from '../../app.reducer';
 import { filtrosValidos } from 'src/app/filtro/filtro.action';
 
 @Component({
-  selector: 'app-todo-list',
-  templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.css']
+    selector: 'app-todo-list',
+    templateUrl: './todo-list.component.html',
+    styleUrls: ['./todo-list.component.css'],
+    standalone: false
 })
 export class TodoListComponent implements OnInit {
   todos: Todo[] = []

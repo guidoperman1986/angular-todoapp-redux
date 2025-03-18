@@ -6,9 +6,10 @@ import { Todo } from '../models/todo.model';
 import * as actions from '../todos.action';
 
 @Component({
-  selector: 'app-todo-item',
-  templateUrl: './todo-item.component.html',
-  styleUrls: ['./todo-item.component.css']
+    selector: 'app-todo-item',
+    templateUrl: './todo-item.component.html',
+    styleUrls: ['./todo-item.component.css'],
+    standalone: false
 })
 export class TodoItemComponent implements OnInit {
 

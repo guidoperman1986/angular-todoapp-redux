@@ -4,9 +4,10 @@ import { AppState } from '../../app.reducer';
 import * as actions from '../todos.action'
 
 @Component({
-  selector: 'app-todo-page',
-  templateUrl: './todo-page.component.html',
-  styleUrls: ['./todo-page.component.css']
+    selector: 'app-todo-page',
+    templateUrl: './todo-page.component.html',
+    styleUrls: ['./todo-page.component.css'],
+    standalone: false
 })
 export class TodoPageComponent {
 
