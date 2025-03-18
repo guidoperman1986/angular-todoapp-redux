@@ -13,11 +13,11 @@ describe('TodoListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TodoListComponent, FiltroPipe ],
-      providers: [
-        provideMockStore({initialState})
-      ]
-    })
+    imports: [TodoListComponent, FiltroPipe],
+    providers: [
+        provideMockStore({ initialState })
+    ]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(TodoListComponent);

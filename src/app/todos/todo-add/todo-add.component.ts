@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducer';
 import * as actions from '../todos.action'
@@ -8,7 +8,7 @@ import * as actions from '../todos.action'
     selector: 'app-todo-add',
     templateUrl: './todo-add.component.html',
     styleUrls: ['./todo-add.component.css'],
-    standalone: false
+    imports: [ReactiveFormsModule]
 })
 export class TodoAddComponent {
   txtInput!: FormControl;

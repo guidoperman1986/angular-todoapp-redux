@@ -12,11 +12,11 @@ describe('TodoFooterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TodoFooterComponent ],
-      providers: [
-        provideMockStore({initialState})
-      ]
-    })
+    imports: [TodoFooterComponent],
+    providers: [
+        provideMockStore({ initialState })
+    ]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(TodoFooterComponent);

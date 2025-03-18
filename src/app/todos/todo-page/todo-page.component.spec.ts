@@ -17,18 +17,16 @@ describe('TodoPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        ReactiveFormsModule
-      ],
-      declarations: [
+    imports: [
+        ReactiveFormsModule,
         TodoPageComponent,
         TodoAddComponent,
         TodoListComponent,
         TodoFooterComponent,
-        FiltroPipe,
-      ],
-      providers: [provideMockStore({ initialState })],
-    }).compileComponents();
+        FiltroPipe
+    ],
+    providers: [provideMockStore({ initialState })],
+}).compileComponents();
 
     fixture = TestBed.createComponent(TodoPageComponent);
     component = fixture.componentInstance;

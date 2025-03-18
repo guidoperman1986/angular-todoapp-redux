@@ -13,14 +13,14 @@ describe('TodoAddComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        ReactiveFormsModule
-      ],
-      declarations: [ TodoAddComponent ],
-      providers: [
-        provideMockStore({initialState})
-      ]
-    })
+    imports: [
+        ReactiveFormsModule,
+        TodoAddComponent
+    ],
+    providers: [
+        provideMockStore({ initialState })
+    ]
+})
     .compileComponents();
 
     store = TestBed.inject(MockStore);

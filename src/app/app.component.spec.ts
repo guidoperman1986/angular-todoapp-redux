@@ -18,21 +18,19 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
+    imports: [
         RouterTestingModule,
-        ReactiveFormsModule
-      ],
-      declarations: [
-        AppComponent,
+        ReactiveFormsModule,
         TodoPageComponent,
         FooterComponent,
         TodoAddComponent,
         TodoListComponent,
         TodoFooterComponent,
-        FiltroPipe
-      ],
-      providers: [provideMockStore({ initialState })],
-    }).compileComponents();
+        FiltroPipe,
+        AppComponent
+    ],
+    providers: [provideMockStore({ initialState })],
+}).compileComponents();
 
     store = TestBed.inject(MockStore);
   });

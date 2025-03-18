@@ -3,12 +3,13 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../app.reducer';
 import { filtrosValidos, setFilter } from '../../filtro/filtro.action';
 import { deleteAll } from '../todos.action';
+import { NgFor, TitleCasePipe } from '@angular/common';
 
 @Component({
     selector: 'app-todo-footer',
     templateUrl: './todo-footer.component.html',
     styleUrls: ['./todo-footer.component.css'],
-    standalone: false
+    imports: [NgFor, TitleCasePipe]
 })
 export class TodoFooterComponent implements OnInit {
   actualFilter: filtrosValidos = 'all';

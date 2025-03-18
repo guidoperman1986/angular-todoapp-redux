@@ -2,10 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Todo } from './models/todo.model';
 import { filtrosValidos } from '../filtro/filtro.action';
 
-@Pipe({
-    name: 'filtroTodo',
-    standalone: false
-})
+@Pipe({ name: 'filtroTodo' })
 export class FiltroPipe implements PipeTransform {
 
   transform(todos: Todo[], filtro: filtrosValidos): Todo[] {

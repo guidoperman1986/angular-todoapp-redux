@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../app.reducer';
 import { Todo } from '../models/todo.model';
@@ -9,7 +9,7 @@ import * as actions from '../todos.action';
     selector: 'app-todo-item',
     templateUrl: './todo-item.component.html',
     styleUrls: ['./todo-item.component.css'],
-    standalone: false
+    imports: [ReactiveFormsModule]
 })
 export class TodoItemComponent implements OnInit {
 

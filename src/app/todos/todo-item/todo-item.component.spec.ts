@@ -15,14 +15,14 @@ describe('TodoItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TodoItemComponent ],
-      providers: [
-        provideMockStore({initialState})
-      ],
-      imports: [
+    providers: [
+        provideMockStore({ initialState })
+    ],
+    imports: [
         StoreModule.forRoot(appReducers),
-      ]
-    })
+        TodoItemComponent,
+    ]
+})
     .compileComponents();
 
     store = TestBed.inject(MockStore);
