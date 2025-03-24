@@ -37,6 +37,12 @@ describe('TodoItemComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should have delete button', () => {
+    const compiled = fixture.nativeElement;
+    const button = compiled.querySelector('.destroy');
+    expect(button).toBeTruthy();
+  })
+
   it('should delete todo', ()=> {
 
     const spy = spyOn(store, 'dispatch');

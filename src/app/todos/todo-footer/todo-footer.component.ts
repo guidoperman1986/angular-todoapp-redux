@@ -23,7 +23,6 @@ export class TodoFooterComponent implements OnInit {
     this.store.subscribe(state=>{
       this.actualFilter = state.filter
       this.pending = state.todos.filter(todo => todo.completado === false).length
-    
     });
   }
 
