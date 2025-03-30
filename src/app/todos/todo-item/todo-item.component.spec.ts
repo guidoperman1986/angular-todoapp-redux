@@ -11,19 +11,19 @@ describe('TodoItemComponent', () => {
   let component: TodoItemComponent;
   let fixture: ComponentFixture<TodoItemComponent>;
   let store: MockStore;
-  const initialState = [{id: 0, texto: 'Roberto', completado: false}]
+  const initialState = [{ id: 0, texto: 'Roberto', completado: false }]
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    providers: [
+      providers: [
         provideMockStore({ initialState })
-    ],
-    imports: [
+      ],
+      imports: [
         StoreModule.forRoot(appReducers),
         TodoItemComponent,
-    ]
-})
-    .compileComponents();
+      ]
+    })
+      .compileComponents();
 
     store = TestBed.inject(MockStore);
     fixture = TestBed.createComponent(TodoItemComponent);
@@ -37,26 +37,61 @@ describe('TodoItemComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should set chkCompletado and txtInput onInit hook', () => {
+    component.todo = { id: 1, texto: 'Test Todo', completado: false };
+
+    component.ngOnInit();
+
+    expect(component.chkCompletado).not.toBeNull();
+    expect(component.txtInput.value).toBe(component.todo.texto);
+  })
+
+  it('should enable editing mode and set input value', fakeAsync(() => {
+    component.txtInputFisico = {
+      nativeElement: {
+        select: jasmine.createSpy('select')
+      }
+    };
+
+    // Set the todo input
+    component.todo = { id: 1, texto: 'Test Todo', completado: false };
+    component.txtInput = new FormControl('');
+
+    // Call the onEdit method
+    component.onEdit();
+
+    // Verify that editing mode is enabled
+    expect(component.editing).toBeTrue();
+
+    // Verify that the input value is set to the todo's texto
+    expect(component.txtInput.value).toBe('Test Todo');
+
+    // Simulate the timeout
+    tick(1);
+
+    // Verify that the nativeElement.select() method was called
+    expect(component.txtInputFisico.nativeElement.select).toHaveBeenCalled();
+  }));
+
   it('should have delete button', () => {
     const compiled = fixture.nativeElement;
     const button = compiled.querySelector('.destroy');
     expect(button).toBeTruthy();
   })
 
-  it('should delete todo', ()=> {
-
+  it('should delete todo', () => {
     const spy = spyOn(store, 'dispatch');
-    
+
     component.deleteTodo();
 
-    expect(spy).toHaveBeenCalled()   
-    expect(spy).toHaveBeenCalledWith(deleteTodo({ id: component.todo.id }))   
+    expect(spy).toHaveBeenCalled()
+    expect(spy).toHaveBeenCalledWith(deleteTodo({ id: component.todo.id }))
   })
 
   it('should not dispatch when the input is invalid', fakeAsync(() => {
     component.txtInput = new FormControl('')
-    
-    component.txtInput.setErrors({required: true})
+
+    component.txtInput.setErrors({ required: true })
     tick();
 
     const spy = spyOn(store, 'dispatch');
@@ -79,7 +114,7 @@ describe('TodoItemComponent', () => {
   }))
 
 
-  
-  
+
+
 
 });

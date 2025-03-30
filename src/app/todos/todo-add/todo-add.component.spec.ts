@@ -9,19 +9,19 @@ describe('TodoAddComponent', () => {
   let component: TodoAddComponent;
   let fixture: ComponentFixture<TodoAddComponent>;
   let store: MockStore;
-  const initialState = [{id: 0, texto: 'Roberto', completado: false}]
+  const initialState = [{ id: 0, texto: 'Roberto', completado: false }]
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [
+      imports: [
         ReactiveFormsModule,
         TodoAddComponent
-    ],
-    providers: [
+      ],
+      providers: [
         provideMockStore({ initialState })
-    ]
-})
-    .compileComponents();
+      ]
+    })
+      .compileComponents();
 
     store = TestBed.inject(MockStore);
     fixture = TestBed.createComponent(TodoAddComponent);
@@ -34,10 +34,10 @@ describe('TodoAddComponent', () => {
   });
 
   //generate test for todo add
-  it('should add a todo', fakeAsync (() => {
+  it('should add a todo', fakeAsync(() => {
     const spy = spyOn(store, 'dispatch');
     component.txtInput = new FormControl('Robert')
-    component.addTodo()    
+    component.addTodo()
 
     tick();
 
@@ -46,12 +46,18 @@ describe('TodoAddComponent', () => {
 
   }));
 
-  it('should not dispatch when an error comes up', ()=>{
+  it('should not dispatch when an error comes up', () => {
     const spy = spyOn(store, 'dispatch');
+    component.txtInput = new FormControl('');
+    component.txtInput.setErrors({ required: true });
 
-    component.txtInput.setErrors({required: true});
-
+    const result = component.addTodo();
+    expect(result).toBeUndefined();
     expect(spy).not.toHaveBeenCalled()
+  });
+
+  it('should verify invalid input when hitting enter', () => {
+
   })
-  
+
 });

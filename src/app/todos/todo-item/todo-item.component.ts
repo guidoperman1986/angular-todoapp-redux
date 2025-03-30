@@ -6,10 +6,10 @@ import { Todo } from '../models/todo.model';
 import * as actions from '../todos.action';
 
 @Component({
-    selector: 'app-todo-item',
-    templateUrl: './todo-item.component.html',
-    styleUrls: ['./todo-item.component.css'],
-    imports: [ReactiveFormsModule]
+  selector: 'app-todo-item',
+  templateUrl: './todo-item.component.html',
+  styleUrls: ['./todo-item.component.css'],
+  imports: [ReactiveFormsModule]
 })
 export class TodoItemComponent implements OnInit {
 
@@ -25,29 +25,29 @@ export class TodoItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.chkCompletado = new FormControl(this.todo?.completado)
-    this.txtInput      = new FormControl(this.todo?.texto, Validators.required)
+    this.txtInput = new FormControl(this.todo?.texto, Validators.required)
 
     this.chkCompletado.valueChanges.subscribe(valor => {
       this.store.dispatch(actions.toggle({ id: this.todo.id }))
     })
-    
+
   }
 
   onEdit() {
     this.editing = true;
     this.txtInput.setValue(this.todo.texto)
 
-    setTimeout(()=> this.txtInputFisico.nativeElement.select(), 1)
+    setTimeout(() => this.txtInputFisico.nativeElement.select(), 1)
   }
 
   finishEdition() {
     this.editing = false;
-    if ( this.txtInput.invalid ) return;
+    if (this.txtInput.invalid) return;
 
     this.store.dispatch(actions.edit({ id: this.todo.id, texto: this.txtInput.value }))
   }
 
-  deleteTodo(){
-    this.store.dispatch(actions.deleteTodo({id: this.todo.id}));
+  deleteTodo() {
+    this.store.dispatch(actions.deleteTodo({ id: this.todo.id }));
   }
 }
