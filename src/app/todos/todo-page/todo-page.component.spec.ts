@@ -8,32 +8,43 @@ import { TodoListComponent } from '../todo-list/todo-list.component';
 import { TodoFooterComponent } from '../todo-footer/todo-footer.component';
 import { FiltroPipe } from '../filtro.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
+import { toggleAll } from '../todos.action';
 
 describe('TodoPageComponent', () => {
   let component: TodoPageComponent;
   let fixture: ComponentFixture<TodoPageComponent>;
   let store: MockStore;
-  const initialState = {};
+  const initialState = [{ id: 0, texto: 'Roberto', completado: false }];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [
+      imports: [
         ReactiveFormsModule,
         TodoPageComponent,
         TodoAddComponent,
         TodoListComponent,
         TodoFooterComponent,
         FiltroPipe
-    ],
-    providers: [provideMockStore({ initialState })],
-}).compileComponents();
+      ],
+      providers: [provideMockStore({ initialState })],
 
+    }).compileComponents();
     fixture = TestBed.createComponent(TodoPageComponent);
     component = fixture.componentInstance;
+    store = TestBed.inject(MockStore);
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should dispatch toggleAll action', () => {
+    const spyStore = spyOn(store, 'dispatch');
+
+    component.toggleAll();
+
+    expect(spyStore).toHaveBeenCalled();
+    expect(spyStore).toHaveBeenCalledWith(toggleAll({ completed: true }));
+  })
 });
